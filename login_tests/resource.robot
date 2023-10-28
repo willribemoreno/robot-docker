@@ -7,8 +7,8 @@ Documentation     A resource file with reusable keywords and variables.
 Library           SeleniumLibrary
 
 *** Variables ***
-${SERVER}         localhost:7272
-${BROWSER}        Firefox
+${SERVER}         www.google.com
+${BROWSER}        Chrome
 ${DELAY}          0
 ${VALID USER}     demo
 ${VALID PASSWORD}    mode
@@ -18,13 +18,15 @@ ${ERROR URL}      http://${SERVER}/error.html
 
 *** Keywords ***
 Open Browser To Login Page
-    Open Browser    ${LOGIN URL}    ${BROWSER}
+    Sleep    30 seconds
+    Open Browser    ${LOGIN URL}    ${BROWSER}      remote_url=http://selenium-hub:4444/wd/hub
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Login Page Should Be Open
 
 Login Page Should Be Open
-    Title Should Be    Login Page
+#    Sleep    30000
+    Title Should Be    Bla
 
 Go To Login Page
     Go To    ${LOGIN URL}
